@@ -1,0 +1,55 @@
+# ----------------------------------------------------------------------
+# file:    ~/.config/termite/config
+# author:  moparx     - http://moparx.com/configs
+# date:    05/08/2013 - 18:12 EDT
+# vim: set ai et fenc=utf-8 ft=conf nu si sts=0 sw=4 ts=8 tw=0 : 
+# ----------------------------------------------------------------------
+
+[options]
+resize_grip = false
+scroll_on_output = false
+scroll_on_keystroke = true
+audible_bell = false
+visible_bell = false
+mouse_autohide = true
+allow_bold = true
+dynamic_title = true
+urgent_on_bell = true
+clickable_url = true
+font = Roboto Mono for Powerline 11
+scrollback_lines = 1000
+search_wrap = true
+
+# transparency
+transparency = 0.0
+pseudo_transparency = false
+
+# cursor
+cursor_blink = system
+cursor_shape = block
+
+[colors]
+foreground = #EEEEEE
+background = #212121
+cursor = #FFFFFF
+
+color0 = #424242
+color1 = #f44336
+color2 = #4CAF50
+color3 = #FF9800
+color4 = #3F51B5
+color5 = #9C27B0
+color6 = #2196F3
+color7 = #AAAAAA
+color8 = #555555
+color9 = #FF5252
+color10 = #8BC34A
+color11 = #FFC107
+color12 = #03A9F4
+color13 = #673AB7
+color14 = #00BCD4
+color15 = #FFFFFF
+
+[hints]
+foreground = #55FFFF
+
