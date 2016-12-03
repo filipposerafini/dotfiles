@@ -1,0 +1,115 @@
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+[bar/mybar]
+monitor = LVDS-1
+dock = false
+width = 100%
+height = 35
+offset-x = 0
+offset-y = 0
+
+background = #212121
+foreground = #ffffff
+
+;lineheight = 1
+;linecolor = #555
+overline-size = 2
+overline-color = #f00
+underline-size = 2
+underline-color = #00f
+
+border-top = 10
+border-top-color = #00ffffff
+border-left = 10
+border-left-color = #00ffffff
+border-right = 10
+border-right-color = #00ffffff
+border-bottom = 0
+
+spacing = 1
+padding-left = 2
+padding-right = 2
+module-margin-left = 3
+module-margin-right = 3
+
+font-0 = RobotoCondensed:size=12;0
+font-1 = FontAwesome:size=13;-1
+font-2 = IonIcons:size=15;0
+
+modules-left = i3
+modules-center = date
+modules-right = volume battery
+
+tray-position = right
+tray-padding = 4
+tray-background = #212121
+
+[module/i3]
+type = internal/i3
+format = <label-state>
+index-sort = true
+
+label-focused = %name%
+label-focused-background = #1793D1
+label-focused-foreground = #ffffff
+label-focused-underline= #2196F3
+label-focused-padding = 2
+
+label-unfocused = %name%
+label-unfocused-padding = 2
+
+label-urgent = %name%
+label-urgent-background = #FF5722
+label-urgent-padding = 2
+
+label-visible = %name%
+label-visible-foreground = #444
+label-visible-padding = 2
+
+[module/date]
+type = internal/date
+date = %{A1:gsimplecal:}%A, %d %B %Y %{A}- %{F#1793D1} %H:%M
+interval = 1
+
+[module/volume]
+type = internal/volume
+
+format-volume = <ramp-volume>
+format-muted = <label-muted>
+
+label-muted = 
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC0
+full-at = 95
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+label-full = %{F#F44336}     
+
+label-charging = 
+label-discharging = 
+
+ramp-capacity-0 = %{F#FFFFFF}    
+ramp-capacity-1 = %{F#F44336} %{F#FFFFFF}   
+ramp-capacity-2 = %{F#F44336}  %{F#FFFFFF}  
+ramp-capacity-3 = %{F#F44336}   %{F#FFFFFF} 
+ramp-capacity-4 = %{F#F44336}    %{F#FFFFFF}
+ramp-capacity-5 = %{F#F44336}     
+
+animation-charging-0 = %{F#FFFFFF}    
+animation-charging-1 = %{F#F44336} %{F#FFFFFF}   
+animation-charging-2 = %{F#F44336}  %{F#FFFFFF}  
+animation-charging-3 = %{F#F44336}   %{F#FFFFFF} 
+animation-charging-4 = %{F#F44336}    %{F#FFFFFF}
+animation-charging-5 = %{F#F44336}     
+animation-charging-framerate = 750
+
+; vim:ft=dosini
