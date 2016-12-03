@@ -35,7 +35,7 @@ cursor = #FFFFFF
 
 color0 = #424242
 color1 = #f44336
-color2 = #4CAF50
+color2 = #00C853
 color3 = #FF9800
 color4 = #3F51B5
 color5 = #9C27B0
@@ -43,11 +43,11 @@ color6 = #2196F3
 color7 = #AAAAAA
 color8 = #555555
 color9 = #FF5252
-color10 = #8BC34A
+color10 = #64DD17
 color11 = #FFC107
 color12 = #03A9F4
 color13 = #673AB7
-color14 = #00BCD4
+color14 = #18FFFF
 color15 = #FFFFFF
 
 [hints]
