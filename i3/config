@@ -1,5 +1,5 @@
 set $mod Mod4
-set $rofi "rofi -show run -font 'RobotoCondensed 24' -opacity 85  -columns 2 -fullscreen -padding 300 -color-enabled -color-normal '#121212,#b0b0b0,#121212,#121212,#3A6FC9' -color-window '#121212,#121212,#121212'" 
+set $rofi "rofi -show run -font 'RobotoCondensed 22' -opacity 85  -columns 2 -fullscreen -padding 300 -color-enabled -color-normal '#121212,#b0b0b0,#121212,#121212,#3A6FC9' -color-window '#121212,#121212,#121212'" 
 
 # Hybrid colors
 set $black	    #000000
@@ -15,9 +15,9 @@ set $cyan	    #00BCD4
 set $dark	    #252525
 
 # Font
-font pango:RobotoCondensed 12
+font pango:RobotoCondensed 11
 font pango:FontAwesome 12
-font pango:IonIcons 12
+#font pango:IonIcons 12
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
@@ -87,11 +87,11 @@ set $workspace1 1  
 set $workspace2 2  
 set $workspace3 3  
 set $workspace4 4  
-set $workspace5 5   
-set $workspace6 6   
+set $workspace5 5   
+set $workspace6 6   
 set $workspace7 7  
-set $workspace8 8  
-set $workspace9 9  
+set $workspace8 8  
+set $workspace9 9  
 set $workspace10 
 
 # move focused container to workspace
@@ -121,12 +121,11 @@ bindsym $mod+0 workspace $workspace10
 workspace $workspace10 output HDMI-1
 
 assign [class="Google-chrome"] → $workspace2
+assign [class="GitKraken"] → $workspace5
+assign [class="Thunar"] → $workspace6
 assign [class="Keepassx2"] → $workspace7
-assign [class="MATLAB R2016b"] → $workspace5
-assign [class="Nylas N1"] → $workspace6
-assign [class="Thunar"] → $workspace8
-assign [class="Transmission-gtk"] → $workspace8
-for_window [class="Spotify"] move to workspace $workspace9
+assign [class="wavebox"] → $workspace8
+assign [class="Transmission-gtk"] → $workspace9
 assign [class="secondscreen"] → $workspace10
 
 # auto back_and_forth
@@ -148,7 +147,7 @@ new_float none
 workspace_layout default
 
 # gaps
-gaps inner 10
+gaps inner 15
 gaps outer 0
 
 # reload the configuration file
@@ -160,16 +159,11 @@ bindsym $mod+Shift+r restart
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
         bindsym h resize shrink width 3 px or 3 ppt
         bindsym j resize grow height 3 px or 3 ppt
         bindsym k resize shrink height 3 px or 3 ppt
         bindsym l resize grow width 3 px or 3 ppt
 
-        # same bindings, but for the arrow keys
         bindsym Left resize shrink width 3 px or 3 ppt
         bindsym Down resize grow height 3 px or 3 ppt
         bindsym Up resize shrink height 3 px or 3 ppt
@@ -182,8 +176,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $mode_system System (l) lock, (e) logout, (r) reboot, (Shift+s) shutdown
-mode "$mode_system" {
+mode "system" {
     bindsym l exec --no-startup-id lock, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
@@ -196,37 +189,38 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-bindsym $mod+Shift+s mode "$mode_system"
+bindsym $mod+Shift+s mode "system"
 
 # Monitors Options
-bindsym $mod+p exec --no-startup-id "xrandr --output LVDS-1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output VGA-1 --off"
-bindsym $mod+o exec --no-startup-id "xrandr --output LVDS-1 --primary --mode 1366x768 --pos 0x88 --rotate normal --output DP-1 --off --output HDMI-1 --mode 1280x1024 --pos 1366x0 --rotate normal --output VGA-1 --off"; exec --no-startup-id termite --class="secondscreen"
+bindsym $mod+p exec --no-startup-id "xrandr --output LVDS1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output DP1 --off --output HDMI1 --off --output VGA1 --off --output VGA-1-2 --off"
+bindsym $mod+o exec --no-startup-id "xrandr --output LVDS1 --primary --mode 1366x768 --pos 0x88 --rotate normal --output DP1 --off --output HDMI1 --mode 1280x1024 --pos 1366x0 --rotate normal --output VGA1 --off --output VGA-1-2 --off"
+
+bindsym $mod+i exec --no-startup-id "xrandr --output HDMI1 --primary --mode 1280x720 --pos 0x0 --rotate normal --output LVDS1 --off --output VIRTUAL1 --off --output DP1 --off --output VGA1 --off"
 
 # Volume
-bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 5+ unmute"
-bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 5- unmute"
-bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -q set Master 3dB+ unmute"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -q set Master 3dB- unmute"
+
+bindsym XF86AudioMute exec --no-startup-id "amixer -q set Master toggle"
 
 # other keys
 bindsym XF86Calculator exec gnome-calculator
-bindsym Print exec scrot '%Y-%m-%d_%T_scrot.png' -e 'mv $f ~/Pictures/screenshots/'
-# media keys
-bindsym $mod+Home exec curl http://localhost:2000/command/default/playpause
-bindsym $mod+Next exec curl http://localhost:2000/command/default/prev
-bindsym $mod+Prior exec curl http://localhost:2000/command/default/next
+bindsym XF86Print exec scrot '%Y-%m-%d_%T_screenshot.png' -e 'mv $f ~/Pictures/screenshots/'
 
 # startup programs
-exec_always --no-startup-id feh --bg-fill /home/filippo/.background.png
+exec --no-startup-id xrandr --output LVDS1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output DP1 --off --output HDMI1 --off --output VGA1 --off --output VGA-1-2 --off
+exec_always --no-startup-id feh --bg-fill /home/filippo/.background.jpg
+exec_always --no-startup-id /home/filippo/.config/polybar/launch.sh
 exec --no-startup-id nm-applet
-exec_always --no-startup-id /home/filippo/.config/lemonbuddy/launch.sh
 exec --no-startup-id compton -f
+exec --no-startup-id udiskie
 exec --no-startup-id "i3-msg 'workspace $workspace1; append_layout /home/filippo/.config/i3/workspace-1.json'"
 exec --no-startup-id termite --exec="tty-clock -c -s -D -C 6" --class="clock"
 exec --no-startup-id termite --exec=htop --class="htop"
 exec --no-startup-id termite --class="term"
-exec --no-startup-id termite --exec="screenfetch -d '-shell;-uptime'" --hold --class="screenfetch"
+exec --no-startup-id termite --exec="screenfetch -d '-uptime;-shell;-cpu;-mem'" --hold --class="screenfetch"
 exec --no-startup-id xautolock -time 3 -locker lock -corners ----
-exec --no-startup-id xrandr --output LVDS-1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output DP-1 --off --output HDMI-1 --off --output VGA-1 --off
+# exec --no-startup-id wavebox
 
 # open certain windows in floating mode
 for_window [window_role="(?i)pop-up"] floating enable

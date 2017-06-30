@@ -3,28 +3,27 @@ margin-top = 5
 margin-bottom = 5
 
 [bar/mybar]
-monitor = LVDS-1
 dock = false
 width = 100%
 height = 35
 offset-x = 0
 offset-y = 0
 
-background = #212121
+background = #dd212121
 foreground = #ffffff
 
 ;lineheight = 1
 ;linecolor = #555
 overline-size = 2
 overline-color = #f00
-underline-size = 2
+underline-size = 0
 underline-color = #00f
 
 border-top = 10
 border-top-color = #00ffffff
-border-left = 10
+border-left = 15
 border-left-color = #00ffffff
-border-right = 10
+border-right = 15
 border-right-color = #00ffffff
 border-bottom = 0
 
@@ -34,13 +33,13 @@ padding-right = 2
 module-margin-left = 3
 module-margin-right = 3
 
-font-0 = RobotoCondensed:size=12;0
-font-1 = FontAwesome:size=13;-1
-font-2 = IonIcons:size=15;0
+font-0 = RobotoCondensed:size=12;2
+font-1 = FontAwesome:size=12;2
+font-2 = IonIcons:size=14;2
 
 modules-left = i3
 modules-center = date
-modules-right = volume battery
+modules-right = cpu temperature volume battery
 
 tray-position = right
 tray-padding = 4
@@ -48,8 +47,11 @@ tray-background = #212121
 
 [module/i3]
 type = internal/i3
-format = <label-state>
 index-sort = true
+
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-background = #FF5722
 
 label-focused = %name%
 label-focused-background = #1793D1
@@ -70,15 +72,18 @@ label-visible-padding = 2
 
 [module/date]
 type = internal/date
-date = %{A1:gsimplecal:}%A, %d %B %Y %{A}- %{F#1793D1} %H:%M
+date = %{A1:gsimplecal:}%A, %d %B %Y %{A}
+time = %{F#1793D1} %H:%M
+label = %date% - %time%
 interval = 1
 
 [module/volume]
 type = internal/volume
 
-format-volume = <ramp-volume>
+format-volume = <ramp-volume> <label-volume>
 format-muted = <label-muted>
 
+label-volume = %percentage%%
 label-muted = 
 ramp-volume-0 = 
 ramp-volume-1 = 
@@ -111,5 +116,21 @@ animation-charging-3 = %{F#F44336}   %{F#FFFFFF} 
 animation-charging-4 = %{F#F44336}    %{F#FFFFFF}
 animation-charging-5 = %{F#F44336}     
 animation-charging-framerate = 750
+
+[module/temperature]
+type = internal/temperature
+interval = 5
+warn-temperature = 75
+format = <label>
+format-warn = <label-warn>
+label =   %temperature%
+label-warn =   %temperature%
+label-warn-foreground = #F44336
+
+[module/cpu]
+type = internal/cpu
+format = <label>
+interval = 2
+label =   %percentage%%
 
 ; vim:ft=dosini

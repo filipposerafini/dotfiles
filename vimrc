@@ -20,9 +20,11 @@ set modelines=0
 set number
 nnoremap <F3> :NumbersToggle<CR>
 
-" Lightline
+" Airline
 set laststatus=2
 let g:airline_powerline_fonts = 1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 
 " Show file stats
 set ruler
@@ -43,8 +45,8 @@ set expandtab
 set noshiftround
 
 " Cursor motion
-"set cursorcolumn
-"set cursorline
+set cursorcolumn
+set cursorline
 set scrolloff=3
 set backspace=indent,eol,start
 runtime! macros/matchit.vim
@@ -86,6 +88,25 @@ let g:syntastic_check_on_wq = 0
 let g:indentLine_color_term = 239
 let g:indentLine_char = '|'
 
+" Markdown
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
+
+" EasyMotion
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+" s{char}{char} to move to {char}{char}
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+
 " Last line
 set showmode
 set showcmd
@@ -109,7 +130,11 @@ map <leader>l :set list!<CR> " Toggle tabs and EOL
 
 let g:enable_bold_font = 1
 
+" NERDtree
+map <S-l> :tabn<CR>
+map <S-h> :tabp<CR>
+
 " Color scheme (terminal)
 set t_Co=256
 set background=dark
-colorscheme PaperColor
+colorscheme ir_black
