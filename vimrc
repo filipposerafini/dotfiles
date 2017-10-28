@@ -30,7 +30,7 @@ let g:airline_right_sep=''
 set ruler
 
 " Blink cursor on error instead of beeping (grr)
-set visualbell 
+"set visualbell 
 
 " Encoding
 set encoding=utf-8

@@ -4,13 +4,13 @@
     "current_border_width": 1,
     "floating": "auto_off",
     "geometry": {
-       "height": 434,
-       "width": 722,
+       "height": 9200,
+       "width": 4601,
        "x": 0,
        "y": 0
     },
     "name": "filippo@IDA: ~",
-    "percent": 0.45,
+    "percent": 0.44,
     "swallows": [
        {
            "class": "^term$",
@@ -25,7 +25,7 @@
     "border": "pixel",
     "floating": "auto_off",
     "layout": "splitv",
-    "percent": 0.55,
+    "percent": 0.56,
     "type": "con",
     "nodes": [
         {
@@ -33,17 +33,17 @@
             "current_border_width": 1,
             "floating": "auto_off",
             "geometry": {
-               "height": 434,
-               "width": 722,
+               "height": 9200,
+               "width": 4601,
                "x": 0,
                "y": 0
             },
             "name": "htop",
-            "percent": 0.22,
+            "percent": 0.168333333333333,
             "swallows": [
                {
-                   "class": "^htop$",
-                   "instance": "^termite$"
+               "class": "^htop$",
+               "instance": "^termite$"
                }
             ],
             "type": "con"
@@ -53,13 +53,13 @@
             "current_border_width": 1,
             "floating": "auto_off",
             "geometry": {
-               "height": 434,
-               "width": 722,
+               "height": 9200,
+               "width": 4601,
                "x": 0,
                "y": 0
             },
-            "name": "tty-clock -s -c -D -C 4",
-            "percent": 0.24,
+            "name": "tty-clock",
+            "percent": 0.283333333333333,
             "swallows": [
                {
                    "class": "^clock$",
@@ -73,13 +73,13 @@
             "current_border_width": 1,
             "floating": "auto_off",
             "geometry": {
-               "height": 434,
-               "width": 722,
+               "height": 9200,
+               "width": 4601,
                "x": 0,
                "y": 0
             },
-            "name": "filippo@IDA: ~",
-            "percent": 0.54,
+            "name": "screenfetch",
+            "percent": 0.54333333333334,
             "swallows": [
                {
                    "class": "^screenfetch$",

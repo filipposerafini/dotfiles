@@ -20,7 +20,7 @@ font pango:FontAwesome 12
 #font pango:IonIcons 12
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -122,9 +122,8 @@ workspace $workspace10 output HDMI-1
 
 assign [class="Google-chrome"] → $workspace2
 assign [class="GitKraken"] → $workspace5
-assign [class="Thunar"] → $workspace6
+assign [class="Nautilus"] → $workspace6
 assign [class="Keepassx2"] → $workspace7
-assign [class="wavebox"] → $workspace8
 assign [class="Transmission-gtk"] → $workspace9
 assign [class="secondscreen"] → $workspace10
 
@@ -158,7 +157,6 @@ bindsym $mod+Shift+r restart
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
-
         bindsym h resize shrink width 3 px or 3 ppt
         bindsym j resize grow height 3 px or 3 ppt
         bindsym k resize shrink height 3 px or 3 ppt
@@ -198,10 +196,10 @@ bindsym $mod+o exec --no-startup-id "xrandr --output LVDS1 --primary --mode 1366
 bindsym $mod+i exec --no-startup-id "xrandr --output HDMI1 --primary --mode 1280x720 --pos 0x0 --rotate normal --output LVDS1 --off --output VIRTUAL1 --off --output DP1 --off --output VGA1 --off"
 
 # Volume
-bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -q set Master 3dB+ unmute"
-bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -q set Master 3dB- unmute"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo +5%"
+bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo -5%"
 
-bindsym XF86AudioMute exec --no-startup-id "amixer -q set Master toggle"
+bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute alsa_output.pci-0000_00_1b.0.analog-stereo toggle"
 
 # other keys
 bindsym XF86Calculator exec gnome-calculator
@@ -214,13 +212,12 @@ exec_always --no-startup-id /home/filippo/.config/polybar/launch.sh
 exec --no-startup-id nm-applet
 exec --no-startup-id compton -f
 exec --no-startup-id udiskie
-exec --no-startup-id "i3-msg 'workspace $workspace1; append_layout /home/filippo/.config/i3/workspace-1.json'"
-exec --no-startup-id termite --exec="tty-clock -c -s -D -C 6" --class="clock"
-exec --no-startup-id termite --exec=htop --class="htop"
-exec --no-startup-id termite --class="term"
-exec --no-startup-id termite --exec="screenfetch -d '-uptime;-shell;-cpu;-mem'" --hold --class="screenfetch"
+exec --no-startup-id termite --class=term
+exec --no-startup-id termite --exec=htop --class=htop
+exec --no-startup-id termite --exec="tty-clock -c -s -D -C 6" --class=clock
+exec --no-startup-id termite --exec="screenfetch -d '-uptime;-shell;-cpu;-mem'" --class=screenfetch --hold
+exec --no-startup-id "i3-msg 'workspace $workspace1; append_layout /home/filippo/.dotfiles/i3/workspace-1.json'"
 exec --no-startup-id xautolock -time 3 -locker lock -corners ----
-# exec --no-startup-id wavebox
 
 # open certain windows in floating mode
 for_window [window_role="(?i)pop-up"] floating enable
